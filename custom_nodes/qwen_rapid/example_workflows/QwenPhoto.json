@@ -1,0 +1,671 @@
+{
+  "id": "e23ede97-a80a-4aa7-b939-3e0a53257440",
+  "revision": 0,
+  "last_node_id": 10,
+  "last_link_id": 16,
+  "nodes": [
+    {
+      "id": 1,
+      "type": "CheckpointLoaderSimple",
+      "title": "NSFW v23 模型",
+      "pos": [
+        20,
+        20
+      ],
+      "size": [
+        330,
+        210
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            10
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "CLIP",
+          "type": "CLIP",
+          "links": [
+            5
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            6,
+            15
+          ],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "CheckpointLoaderSimple"
+      },
+      "widgets_values": [
+        "v23/Qwen-Rapid-AIO-NSFW-v23.safetensors"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "LoadImage",
+      "title": "原始照片",
+      "pos": [
+        20,
+        300
+      ],
+      "size": [
+        330,
+        210
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            1
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": [],
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "",
+        "image"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "ImageScaleToTotalPixels",
+      "title": "图片大小",
+      "pos": [
+        380,
+        300
+      ],
+      "size": [
+        330,
+        210
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 1
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            2,
+            7
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ImageScaleToTotalPixels"
+      },
+      "widgets_values": [
+        "lanczos",
+        0.47,
+        16
+      ]
+    },
+    {
+      "id": 10,
+      "type": "GetImageSize",
+      "title": "自动保持比例",
+      "pos": [
+        740,
+        550
+      ],
+      "size": [
+        330,
+        210
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 2
+        }
+      ],
+      "outputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "links": [
+            3
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "links": [
+            4
+          ],
+          "slot_index": 1
+        },
+        {
+          "name": "batch_size",
+          "type": "INT",
+          "links": [],
+          "slot_index": 2
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "GetImageSize"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 5,
+      "type": "EmptySD3LatentImage",
+      "title": "画布",
+      "pos": [
+        1100,
+        550
+      ],
+      "size": [
+        330,
+        210
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "width",
+          "type": "INT",
+          "widget": {
+            "name": "width"
+          },
+          "link": 3
+        },
+        {
+          "name": "height",
+          "type": "INT",
+          "widget": {
+            "name": "height"
+          },
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            8,
+            13
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "EmptySD3LatentImage"
+      },
+      "widgets_values": [
+        768,
+        608,
+        1
+      ]
+    },
+    {
+      "id": 3,
+      "type": "QwenRapidTextEncode",
+      "title": "编辑要求",
+      "pos": [
+        740,
+        20
+      ],
+      "size": [
+        330,
+        210
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "clip",
+          "type": "CLIP",
+          "link": 5
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 6
+        },
+        {
+          "name": "image1",
+          "type": "IMAGE",
+          "link": 7
+        },
+        {
+          "name": "image2",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image3",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "image4",
+          "type": "IMAGE",
+          "link": null
+        },
+        {
+          "name": "target_latent",
+          "type": "LATENT",
+          "link": 8
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            9,
+            11
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "QwenRapidTextEncode"
+      },
+      "widgets_values": [
+        "请描述想怎样修改这张照片。"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "ConditioningZeroOut",
+      "title": "空条件",
+      "pos": [
+        1100,
+        20
+      ],
+      "size": [
+        330,
+        210
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "conditioning",
+          "type": "CONDITIONING",
+          "link": 9
+        }
+      ],
+      "outputs": [
+        {
+          "name": "CONDITIONING",
+          "type": "CONDITIONING",
+          "links": [
+            12
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "ConditioningZeroOut"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 6,
+      "type": "KSampler",
+      "title": "生成设置",
+      "pos": [
+        1470,
+        20
+      ],
+      "size": [
+        330,
+        210
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 10
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 11
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 12
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            14
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler"
+      },
+      "widgets_values": [
+        42,
+        "randomize",
+        4,
+        1,
+        "euler_ancestral",
+        "beta",
+        1
+      ]
+    },
+    {
+      "id": 7,
+      "type": "VAEDecode",
+      "title": "解码",
+      "pos": [
+        1820,
+        20
+      ],
+      "size": [
+        330,
+        210
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 14
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 15
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            16
+          ],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecode"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 8,
+      "type": "SaveImage",
+      "title": "编辑结果",
+      "pos": [
+        2170,
+        20
+      ],
+      "size": [
+        330,
+        210
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": [],
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage"
+      },
+      "widgets_values": [
+        "Qwen照片编辑"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      9,
+      0,
+      "IMAGE"
+    ],
+    [
+      2,
+      9,
+      0,
+      10,
+      0,
+      "IMAGE"
+    ],
+    [
+      3,
+      10,
+      0,
+      5,
+      0,
+      "INT"
+    ],
+    [
+      4,
+      10,
+      1,
+      5,
+      1,
+      "INT"
+    ],
+    [
+      5,
+      1,
+      1,
+      3,
+      0,
+      "CLIP"
+    ],
+    [
+      6,
+      1,
+      2,
+      3,
+      1,
+      "VAE"
+    ],
+    [
+      7,
+      9,
+      0,
+      3,
+      2,
+      "IMAGE"
+    ],
+    [
+      8,
+      5,
+      0,
+      3,
+      6,
+      "LATENT"
+    ],
+    [
+      9,
+      3,
+      0,
+      4,
+      0,
+      "CONDITIONING"
+    ],
+    [
+      10,
+      1,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      11,
+      3,
+      0,
+      6,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      12,
+      4,
+      0,
+      6,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      13,
+      5,
+      0,
+      6,
+      3,
+      "LATENT"
+    ],
+    [
+      14,
+      6,
+      0,
+      7,
+      0,
+      "LATENT"
+    ],
+    [
+      15,
+      1,
+      2,
+      7,
+      1,
+      "VAE"
+    ],
+    [
+      16,
+      7,
+      0,
+      8,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "version": 0.4,
+  "extra": {
+    "linearMode": true,
+    "linearData": {
+      "inputs": [
+        [
+          2,
+          "image",
+          {
+            "description": "上传照片，或把网页里的图片直接拖进来。",
+            "height": 340
+          }
+        ],
+        [
+          3,
+          "prompt",
+          {
+            "description": "用中文或英文描述修改要求。",
+            "height": 150
+          }
+        ],
+        [
+          9,
+          "megapixels",
+          {
+            "description": "默认约 0.47 百万像素，保持原图比例。"
+          }
+        ],
+        [
+          6,
+          "steps",
+          {
+            "description": "通常 4 步；更多步数需要更久。"
+          }
+        ],
+        [
+          6,
+          "seed",
+          {
+            "description": "随机种子；固定数字用于复现。"
+          }
+        ]
+      ],
+      "outputs": [
+        "8"
+      ]
+    },
+    "workflowRendererVersion": "Vue"
+  }
+}

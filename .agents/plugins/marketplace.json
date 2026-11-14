@@ -1,0 +1,20 @@
+{
+  "name": "opl-image-lab",
+  "interface": {
+    "displayName": "OPL Image Lab"
+  },
+  "plugins": [
+    {
+      "name": "opl-image",
+      "source": {
+        "source": "local",
+        "path": "./plugins/opl-image"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

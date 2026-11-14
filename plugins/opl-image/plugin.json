@@ -1,0 +1,30 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "opl-image",
+  "version": "0.1.0",
+  "description": "Local image generation and editing through a standard OPL MCP App.",
+  "author": {
+    "name": "Gaofeng"
+  },
+  "keywords": [
+    "opl",
+    "image",
+    "miniapp"
+  ],
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "OPL Image Lab",
+        "shortDescription": "本机文生图、自然语言改图和结果比较",
+        "developerName": "Gaofeng",
+        "category": "Productivity",
+        "capabilities": [
+          "Interactive",
+          "Write"
+        ]
+      }
+    }
+  },
+  "repository": "https://github.com/gaofeng21cn/opl-image-lab",
+  "license": "Apache-2.0"
+}

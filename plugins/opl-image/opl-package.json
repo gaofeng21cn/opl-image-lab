@@ -1,0 +1,95 @@
+{
+  "surface_kind": "opl_capability_package_manifest.v2",
+  "package_id": "opl-image",
+  "display_name": "OPL Image Lab",
+  "publisher": "gaofeng21cn",
+  "version": "0.1.0",
+  "source": "first_party_repo_local",
+  "package_role": "capability_package",
+  "visibility": "public",
+  "management_scope": "local_product",
+  "publication_channel_admission": "development_only",
+  "capability_abi": {
+    "id": "opl-image.v1",
+    "version": "1.0.0",
+    "compatibility_policy": "same_major"
+  },
+  "exports": {
+    "core_skill_ids": [
+      "opl-image"
+    ],
+    "core_module_ids": [
+      "opl-image.v1"
+    ],
+    "optional_skill_policy_ref": "skills/opl-image/SKILL.md",
+    "optional_skills_installed_by_default": false
+  },
+  "codex_surface": {
+    "plugin_id": "opl-image",
+    "plugin_source_path": ".",
+    "codex_default_exposure": false,
+    "optional_install_policy": "core_skills_only",
+    "configured_codex_plugin_carrier": {
+      "kind": "codex_plugin_manager",
+      "plugin_selector": "opl-image@opl-image-lab",
+      "executor_route": "codex_cli",
+      "marketplace_source": "gaofeng21cn/opl-image-lab",
+      "publication_ref": null
+    }
+  },
+  "presentation": {
+    "software_type": "application",
+    "display_name_i18n": {
+      "zh-CN": "OPL 图像工坊",
+      "en-US": "OPL Image Lab"
+    },
+    "description_i18n": {
+      "zh-CN": "本机文生图、自然语言编辑和结果比较。",
+      "en-US": "Local image generation, natural-language editing, and comparison."
+    },
+    "miniapp": {
+      "presentation_mode": "dedicated_app",
+      "entry_kind": "product_entry",
+      "direct_entry": true,
+      "dedicated_resource_uri": "ui://opl-image/workbench.html",
+      "entry_view_id": "opl-image.workbench"
+    },
+    "home_shortcuts": [],
+    "session_routing_summary_i18n": {
+      "zh-CN": "本机文生图、自然语言编辑和结果比较。",
+      "en-US": "Local image generation, natural-language editing, and comparison."
+    }
+  },
+  "content_lock": {
+    "algorithm": "sha256",
+    "canonicalization": "ordered_path_length_file_length_bytes",
+    "paths": [
+      "mcp.json",
+      "plugin.json",
+      "skills/opl-image/SKILL.md",
+      "miniapp/server.mjs",
+      "miniapp/index.html",
+      "miniapp/DSH-LICENSE.txt",
+      "miniapp/THIRD_PARTY_NOTICES.txt",
+      "LOCAL_ACCESS.md",
+      "scripts/settings.py",
+      "scripts/image_tasks.py",
+      "scripts/manage.py",
+      "scripts/redirect.py",
+      "scripts/download_model.py",
+      "custom_nodes/qwen_rapid/__init__.py",
+      "custom_nodes/qwen_rapid/image_io.py",
+      "custom_nodes/qwen_rapid/workbench_http.py",
+      "custom_nodes/qwen_rapid/web/workbench.js",
+      "custom_nodes/qwen_rapid/example_workflows/QwenPhoto.json",
+      "custom_nodes/qwen_rapid/example_workflows/QwenTextToImage.json",
+      "workflows/edit-api.json",
+      "model-profile.json",
+      "requirements.txt",
+      "LICENSE",
+      "NOTICE"
+    ],
+    "digest": "sha256:9b3d93d2d22bb03e46ddfe44753e843991730f284a69bd1384a00c265d2a4090"
+  },
+  "source_repo": "https://github.com/gaofeng21cn/opl-image-lab.git"
+}

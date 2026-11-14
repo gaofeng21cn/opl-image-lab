@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>OPL Image Lab</title><style>/* STYLE */</style></head>
+<body data-opl-family="opl-apps">
+<header><div><strong>OPL Image Lab</strong><span id="service" role="status">正在连接…</span></div><div class="actions"><button class="dsh-button" id="history-toggle">任务历史</button><button id="release" class="dsh-button">释放模型内存</button><button class="dsh-button" id="start">启动推理服务</button><details id="more"><summary>更多</summary><div class="menu"><button id="stop" class="dsh-button">停止推理服务</button><button id="advanced" class="dsh-button">打开 ComfyUI</button></div></details></div></header>
+<main>
+<section class="workspace" aria-label="图片预览">
+<div class="preview-toolbar"><div role="group" aria-label="比较视图"><button class="dsh-button" id="show-result" aria-pressed="true">结果</button><button class="dsh-button" id="show-original" aria-pressed="false">原图</button><button class="dsh-button" id="show-compare" aria-pressed="false">并排比较</button></div><div class="actions"><button class="dsh-button" id="reuse" disabled>继续编辑这张图</button><button class="dsh-button" id="download" disabled>下载 PNG</button></div></div>
+<div id="preview"><div class="empty" id="empty-preview"><h1>从一张图，或一句话开始</h1><p>导入照片后描述修改；也可以直接描述想生成的画面。</p><button class="dsh-button" id="pick-preview">导入图片</button></div><figure id="original-figure" hidden><img id="original" alt="本次任务的原始图片"><figcaption>原图</figcaption></figure><figure id="result-figure" hidden><img id="result" alt="选中任务的生成结果"><figcaption>结果</figcaption></figure></div>
+<div id="task-status" role="status" aria-live="polite">图片与指令在本机处理。</div>
+<section id="history" hidden aria-label="任务历史"><div class="section-title"><strong>最近任务</strong><button id="refresh-history" class="dsh-button">刷新</button></div><div id="history-list"></div></section>
+</section>
+<aside aria-label="生成与编辑参数"><form id="generate-form">
+<label class="dropzone" id="dropzone" tabindex="0"><input type="file" accept="image/png,image/jpeg,image/webp,image/avif" id="file" hidden><img id="input-thumbnail" alt="待编辑图片" hidden><span id="input-label">点击、拖入或粘贴图片</span><span class="hint">支持本机文件和公开网页图片</span></label>
+<div class="actions input-actions"><button type="button" class="dsh-button" id="url-toggle">图片链接</button><button type="button" class="dsh-button" id="clear-input" disabled>移除原图</button></div>
+<div id="url-row" hidden><label for="image-url">公开图片直链</label><div class="actions"><input class="dsh-input" type="url" id="image-url" placeholder="https://…"><button type="button" class="dsh-button" id="import-url">导入</button></div></div>
+<label for="prompt" id="prompt-label">想生成什么画面？</label><textarea class="dsh-input" id="prompt" required maxlength="8000" rows="6" placeholder="例如：白色背景上的黄色陶瓷杯，柔和自然光。"></textarea>
+<div class="dimensions"><label>宽度<input class="dsh-input" id="width" type="number" min="256" max="1536" step="16" value="768" required></label><label>高度<input class="dsh-input" id="height" type="number" min="256" max="1536" step="16" value="768" required></label></div>
+<details><summary>生成参数</summary><div class="dimensions"><label>步数<input class="dsh-input" id="steps" type="number" min="1" max="12" value="4" required></label><label>种子<input class="dsh-input" id="seed" type="number" min="0" max="9007199254740991" value="42" required></label></div></details>
+<button class="dsh-button primary" id="generate" type="button" disabled>生成图片</button><button class="dsh-button" type="button" id="cancel" disabled>取消选中任务</button>
+<p class="hint"><span id="model-info">本机推理</span><br>关闭界面后，后台任务继续。</p>
+</form></aside></main><div id="notice" role="alert" hidden></div>
+<script type="module">/* SCRIPT */</script></body></html>
