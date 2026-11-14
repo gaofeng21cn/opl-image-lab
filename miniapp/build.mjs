@@ -26,12 +26,15 @@ for (const [path, entry] of Object.entries(lock.packages)) {
 await writeFile(out + '/THIRD_PARTY_NOTICES.txt', notices.replace(/\r\n/g, '\n').replace(/[ \t]+$/gm, '').trimEnd() + '\n');
 const manifestPath = '../plugins/opl-image/opl-package.json';
 const manifest = JSON.parse(await readFile(manifestPath, 'utf8'));
+const icon = manifest.presentation.icon_ref;
+await mkdir(dirname(resolve('../plugins/opl-image', icon)), { recursive: true });
+await copyFile('../' + icon, '../plugins/opl-image/' + icon);
 const runtimeFiles = ['scripts/settings.py', 'scripts/image_tasks.py', 'scripts/manage.py', 'scripts/redirect.py', 'scripts/download_model.py', 'custom_nodes/qwen_rapid/__init__.py', 'custom_nodes/qwen_rapid/image_io.py', 'custom_nodes/qwen_rapid/workbench_http.py', 'custom_nodes/qwen_rapid/web/workbench.js', 'custom_nodes/qwen_rapid/example_workflows/QwenPhoto.json', 'custom_nodes/qwen_rapid/example_workflows/QwenTextToImage.json', 'workflows/edit-api.json', 'model-profile.json', 'requirements.txt', 'LICENSE', 'NOTICE'];
 for (const path of runtimeFiles) {
   await mkdir(dirname(resolve('../plugins/opl-image', path)), { recursive: true });
   await copyFile('../' + path, '../plugins/opl-image/' + path);
 }
-manifest.content_lock.paths = [...new Set(['mcp.json', 'plugin.json', 'skills/opl-image/SKILL.md', 'miniapp/server.mjs', 'miniapp/index.html', 'miniapp/DSH-LICENSE.txt', 'miniapp/THIRD_PARTY_NOTICES.txt', 'LOCAL_ACCESS.md', ...runtimeFiles])];
+manifest.content_lock.paths = [...new Set(['mcp.json', 'plugin.json', icon, 'skills/opl-image/SKILL.md', 'miniapp/server.mjs', 'miniapp/index.html', 'miniapp/DSH-LICENSE.txt', 'miniapp/THIRD_PARTY_NOTICES.txt', 'LOCAL_ACCESS.md', ...runtimeFiles])];
 const digest = createHash('sha256');
 for (const path of manifest.content_lock.paths) {
   const name = Buffer.from(path), bytes = await readFile('../plugins/opl-image/' + path);

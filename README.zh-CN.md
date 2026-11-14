@@ -1,6 +1,14 @@
-# OPL 图像工坊
+<p align="center">
+  <img src="assets/branding/opl-image-lab-logo.png" alt="OPL Image Lab logo" width="132" />
+</p>
 
-OPL 图像工坊是一款本地优先的 OPL 图像 MiniApp，提供文生图和自然语言编辑。标准 MCP App 与 Agent 工具调用同一任务 owner；推理使用单独安装的 ComfyUI。
+<p align="center"><a href="./README.md">English</a> | <strong>中文</strong></p>
+
+<h1 align="center">OPL Image Lab</h1>
+
+<p align="center"><strong>在本机生成、编辑和比较图像。</strong></p>
+
+OPL Image Lab是一款本地优先的 OPL 图像 MiniApp，提供文生图和自然语言编辑。标准 MCP App 与 Agent 工具调用同一任务 owner；推理使用单独安装的 ComfyUI。
 
 公开仓库只包含应用、ComfyUI 适配器、模型配置、测试和安装工具。模型文件、提示词、原始照片、生成图像、任务历史和运行日志保存在用户选择的本机工作区，不纳入仓库。
 
@@ -25,7 +33,7 @@ codex plugin marketplace add "$PWD"
 codex plugin add opl-image@opl-image-lab
 ```
 
-在当前 OPL 对话的应用工作台刷新目录，然后打开 **OPL 图像工坊**，点击 **启动推理服务**。默认模型约 28.4 GB；`--with-inference` 安装依赖，`--download-model` 明确选择下载模型。
+在当前 OPL 对话的应用工作台刷新目录，然后打开 **OPL Image Lab**，点击 **启动推理服务**。默认模型约 28.4 GB；`--with-inference` 安装依赖，`--download-model` 明确选择下载模型。
 
 准备好运行环境后，也可以直接安装仓库中自带运行代码的预构建插件：
 

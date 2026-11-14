@@ -1,4 +1,12 @@
-# OPL Image Lab
+<p align="center">
+  <img src="assets/branding/opl-image-lab-logo.png" alt="OPL Image Lab logo" width="132" />
+</p>
+
+<p align="center"><strong>English</strong> | <a href="./README.zh-CN.md">中文</a></p>
+
+<h1 align="center">OPL Image Lab</h1>
+
+<p align="center"><strong>Generate, edit, and compare images locally.</strong></p>
 
 OPL Image Lab is a local-first image-generation and natural-language editing MiniApp for OPL. It provides a standard MCP App and Agent tools over the same task owner, and uses a separately installed ComfyUI checkout for inference.
 

@@ -21,7 +21,9 @@
         "capabilities": [
           "Interactive",
           "Write"
-        ]
+        ],
+        "logo": "./assets/branding/opl-image-lab-logo.png",
+        "composerIcon": "./assets/branding/opl-image-lab-logo.png"
       }
     }
   },

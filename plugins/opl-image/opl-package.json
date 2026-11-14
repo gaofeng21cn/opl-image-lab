@@ -40,7 +40,7 @@
   "presentation": {
     "software_type": "application",
     "display_name_i18n": {
-      "zh-CN": "OPL 图像工坊",
+      "zh-CN": "OPL Image Lab",
       "en-US": "OPL Image Lab"
     },
     "description_i18n": {
@@ -58,7 +58,8 @@
     "session_routing_summary_i18n": {
       "zh-CN": "本机文生图、自然语言编辑和结果比较。",
       "en-US": "Local image generation, natural-language editing, and comparison."
-    }
+    },
+    "icon_ref": "assets/branding/opl-image-lab-logo.png"
   },
   "content_lock": {
     "algorithm": "sha256",
@@ -66,6 +67,7 @@
     "paths": [
       "mcp.json",
       "plugin.json",
+      "assets/branding/opl-image-lab-logo.png",
       "skills/opl-image/SKILL.md",
       "miniapp/server.mjs",
       "miniapp/index.html",
@@ -89,7 +91,7 @@
       "LICENSE",
       "NOTICE"
     ],
-    "digest": "sha256:9b3d93d2d22bb03e46ddfe44753e843991730f284a69bd1384a00c265d2a4090"
+    "digest": "sha256:7e792d308ecb7489c18a8530f8d3dba3c0d29de6f4d1a039647ecc74663d6b66"
   },
   "source_repo": "https://github.com/gaofeng21cn/opl-image-lab.git"
 }
