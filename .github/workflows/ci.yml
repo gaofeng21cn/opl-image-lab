@@ -18,8 +18,11 @@ jobs:
           cache: npm
           cache-dependency-path: miniapp/package-lock.json
       - run: python -m pip install -r requirements.txt
-      - run: npm --prefix miniapp ci
-      - run: npm --prefix miniapp run build
-      - run: npm --prefix miniapp test
+      - run: npm ci
+        working-directory: miniapp
+      - run: npm run build
+        working-directory: miniapp
+      - run: npm test
+        working-directory: miniapp
       - run: python -m unittest discover -s tests -v
       - run: git diff --exit-code -- plugins/opl-image

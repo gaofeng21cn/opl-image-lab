@@ -3,12 +3,11 @@
 Use synthetic images and an isolated `OPL_IMAGE_WORKSPACE`. Keep private photos,
 prompts, outputs, credentials, local paths and model weights out of commits.
 
-Install Python requirements and run `npm --prefix miniapp ci`. Before a pull
+Install Python requirements and run `npm ci` from `miniapp/`. Before a pull
 request, run:
 
 ```sh
-npm --prefix miniapp run build
-npm --prefix miniapp test
+(cd miniapp && npm run build && npm test)
 python3 -m unittest discover -s tests -v
 git diff --check
 ```

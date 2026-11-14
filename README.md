@@ -47,8 +47,8 @@ python3 -m pip install -r requirements.txt
 python3 scripts/setup.py --comfy-source /path/to/ComfyUI
 cd miniapp
 npm ci
-npm test
 npm run build
+npm test
 ```
 
 When `OPL_IMAGE_WORKSPACE` is set, it selects the per-user data directory. Otherwise the default is `~/Library/Application Support/OPL Image Lab` on macOS or `$XDG_DATA_HOME/opl-image-lab` on Linux. Code checkout and personal data remain separate. `OPL_IMAGE_PYTHON` can select the runtime Python explicitly.

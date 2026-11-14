@@ -46,8 +46,8 @@ python3 -m pip install -r requirements.txt
 python3 scripts/setup.py --comfy-source /path/to/ComfyUI
 cd miniapp
 npm ci
-npm test
 npm run build
+npm test
 ```
 
 设置 `OPL_IMAGE_WORKSPACE` 可指定运行数据目录。未设置时，macOS 默认 `~/Library/Application Support/OPL Image Lab`，Linux 默认 `$XDG_DATA_HOME/opl-image-lab`。源码与个人数据分开；`OPL_IMAGE_PYTHON` 可指定解释器。
