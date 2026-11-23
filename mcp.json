@@ -5,7 +5,7 @@
       "type": "stdio",
       "command": "node",
       "args": [
-        "${PLUGIN_ROOT}/miniapp/server.mjs"
+        "${PLUGIN_ROOT}/miniapp/dist/server.mjs"
       ],
       "cwd": "${PLUGIN_ROOT}"
     }

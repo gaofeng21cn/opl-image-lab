@@ -12,9 +12,10 @@ python3 -m unittest discover -s tests -v
 git diff --check
 ```
 
-Commit generated files under `plugins/opl-image` with their source changes.
-That payload must run from an installed cache without the source checkout.
-The build updates its content lock and dependency notices.
+Commit updated `opl-package.json` content locks with source changes.
+`npm run build` outputs the bundled MiniApp and third-party notices into
+gitignored `miniapp/dist/` so the plugin runs from an installed cache without
+needing `node_modules` or duplicating repository files.
 
 Preserve standard MCP Apps behavior and the shared image owner. UI and Agent
 actions must use the same task ID and result. Keep unknown outcomes inspectable;

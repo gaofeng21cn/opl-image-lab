@@ -26,3 +26,4 @@
 *.sqlite*
 *.pcraft
 /.local/
+/miniapp/dist/

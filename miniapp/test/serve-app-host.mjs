@@ -4,11 +4,12 @@ import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js'
 import { build } from 'esbuild';
 import { createServer } from 'node:http';
 import { writeFile } from 'node:fs/promises';
-import { resolve } from 'node:path';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 // A strict qualification fixture. Native Host acceptance is recorded separately.
 const sandboxDocument = resource => `<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; media-src data: blob:; font-src data:; connect-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">${resource.text}`;
 const client = new Client({ name: 'image-sdk-host', version: '1.0.0' }, { capabilities: { extensions: { 'io.modelcontextprotocol/ui': { mimeTypes: ['text/html;profile=mcp-app'] } } } });
-await client.connect(new StdioClientTransport({ command: 'node', args: [resolve('../plugins/opl-image/miniapp/server.mjs')], env: process.env }));
+await client.connect(new StdioClientTransport({ command: 'node', args: [resolve(dirname(fileURLToPath(import.meta.url)), '../dist/server.mjs')], env: process.env }));
 const resource = (await client.readResource({ uri: 'ui://opl-image/workbench.html' })).contents[0];
 const view = sandboxDocument({ ...resource, text: resource.text });
 const script = (await build({ entryPoints: ['test/app-host.js'], bundle: true, write: false, format: 'esm', platform: 'browser' })).outputFiles[0].text;

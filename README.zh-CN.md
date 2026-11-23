@@ -29,20 +29,15 @@ OPL Image Lab是一款本地优先的 OPL 图像 MiniApp，提供文生图和自
 git clone https://github.com/gaofeng21cn/opl-image-lab.git
 cd opl-image-lab
 python3 scripts/setup.py --with-inference --download-model
+npm --prefix miniapp ci
+npm --prefix miniapp run build
 codex plugin marketplace add "$PWD"
 codex plugin add opl-image@opl-image-lab
 ```
 
 在当前 OPL 对话的应用工作台刷新目录，然后打开 **OPL Image Lab**，点击 **启动推理服务**。默认模型约 28.4 GB；`--with-inference` 安装依赖，`--download-model` 明确选择下载模型。
 
-准备好运行环境后，也可以直接安装仓库中自带运行代码的预构建插件：
-
-```sh
-codex plugin marketplace add gaofeng21cn/opl-image-lab
-codex plugin add opl-image@opl-image-lab
-```
-
-这是源码/开发分发，尚未发布正式 OPL OCI Package。
+添加本地插件市场前需先构建 `miniapp/dist/`，GitHub 仓库不再提交预构建产物。这是源码/开发分发，尚未发布正式 OPL OCI Package。
 
 ## 本机开发
 
@@ -72,6 +67,6 @@ npm test
 
 ## 测试与许可
 
-运行 `npm --prefix miniapp test` 和 `python3 -m unittest discover -s tests -v`。生成 OPL Package 载体使用 `npm --prefix miniapp run build`。
+运行 `npm --prefix miniapp test` 和 `python3 -m unittest discover -s tests -v`。将 MiniApp 产物构建到 `miniapp/dist/` 使用 `npm --prefix miniapp run build`。
 
 应用使用 Apache-2.0。OPL DSH 主题和 SDK 依赖保留其上游许可证。ComfyUI 和 Qwen 模型另行安装并遵循各自许可证。详见 [NOTICE](NOTICE) 与[验证范围](docs/validation.md)。当前交互界面为中文，其他客户端可读取结构化工具结果。

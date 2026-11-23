@@ -7,4 +7,4 @@
 - Do not commit models, user images, prompts, task history, local settings, virtual environments, logs, or installation receipts. Test with synthetic inputs and isolated workspaces.
 - Source publication, OCI Package distribution, local installation, native Host acceptance, and visual quality are separate claims. Current distribution is an explicit development carrier.
 - New GitHub-facing text uses English. Keep README.md in English and README.zh-CN.md in Chinese; update both for installation and behavior changes.
-- Validate with `npm --prefix miniapp test` and `python3 -m unittest discover -s tests -v`. Build with `npm --prefix miniapp run build`; commit the generated carrier when its source changes.
+- Validate with `npm --prefix miniapp run build`, `npm --prefix miniapp test`, and `python3 -m unittest discover -s tests -v`. Build outputs go to gitignored `miniapp/dist/`; commit `opl-package.json` if locked source changes update its content lock.

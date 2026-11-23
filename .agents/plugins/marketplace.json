@@ -8,7 +8,7 @@
       "name": "opl-image",
       "source": {
         "source": "local",
-        "path": "./plugins/opl-image"
+        "path": "."
       },
       "policy": {
         "installation": "AVAILABLE",

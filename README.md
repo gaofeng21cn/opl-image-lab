@@ -30,20 +30,15 @@ so you can configure the inference runtime before enabling the plugin:
 git clone https://github.com/gaofeng21cn/opl-image-lab.git
 cd opl-image-lab
 python3 scripts/setup.py --with-inference --download-model
+npm --prefix miniapp ci
+npm --prefix miniapp run build
 codex plugin marketplace add "$PWD"
 codex plugin add opl-image@opl-image-lab
 ```
 
 Open the current OPL conversation's App workbench, refresh the catalog, and open **OPL Image Lab**. Click **启动推理服务** to start inference. The default model download is about 28.4 GB; `--with-inference` installs dependencies, and `--download-model` separately opts into the download.
 
-Once the runtime is configured, the self-contained prebuilt plugin can also be installed from GitHub:
-
-```sh
-codex plugin marketplace add gaofeng21cn/opl-image-lab
-codex plugin add opl-image@opl-image-lab
-```
-
-This is source/development distribution. An official OPL OCI Package release has not been published.
+Build the MiniApp bundle into `miniapp/dist/` before adding the local marketplace; the gitignored `miniapp/dist/` directory is not prebuilt in GitHub. This is source/development distribution. An official OPL OCI Package release has not been published.
 
 ## Local development
 
@@ -73,6 +68,6 @@ For advanced node graphs, use the existing ComfyUI interface. The MiniApp does n
 
 ## Tests and licenses
 
-Run the owner contract tests and MCP Apps SDK test with `npm --prefix miniapp test` and `python3 -m unittest discover -s tests -v`. The generated OPL Package payload is built by `npm --prefix miniapp run build`.
+Run the owner contract tests and MCP Apps SDK test with `npm --prefix miniapp test` and `python3 -m unittest discover -s tests -v`. The MiniApp bundle and dependency notices are built into `miniapp/dist/` by `npm --prefix miniapp run build`.
 
 The application is Apache-2.0. The OPL DSH theme and SDK dependency notices retain their upstream licenses. ComfyUI and Qwen model weights are separately installed under their own licenses. See [NOTICE](NOTICE) and [validation scope](docs/validation.md). The current UI is Chinese; tools expose structured results to other clients.

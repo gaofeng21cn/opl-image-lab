@@ -69,10 +69,15 @@
       "plugin.json",
       "assets/branding/opl-image-lab-logo.png",
       "skills/opl-image/SKILL.md",
+      "miniapp/package.json",
+      "miniapp/package-lock.json",
+      "miniapp/build.mjs",
       "miniapp/server.mjs",
+      "miniapp/app.js",
       "miniapp/index.html",
+      "miniapp/dsh-theme.css",
+      "miniapp/style.css",
       "miniapp/DSH-LICENSE.txt",
-      "miniapp/THIRD_PARTY_NOTICES.txt",
       "LOCAL_ACCESS.md",
       "scripts/settings.py",
       "scripts/image_tasks.py",
@@ -91,7 +96,7 @@
       "LICENSE",
       "NOTICE"
     ],
-    "digest": "sha256:7e792d308ecb7489c18a8530f8d3dba3c0d29de6f4d1a039647ecc74663d6b66"
+    "digest": "sha256:660a477623a724b2831cfb07f7b98671837ffab0afefdfa9f815322a08ce0395"
   },
   "source_repo": "https://github.com/gaofeng21cn/opl-image-lab.git"
 }

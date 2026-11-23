@@ -1,13 +1,38 @@
 """Exercise first-run setup without weights, network access, or a personal checkout."""
+import hashlib
 import json
 import os
 from pathlib import Path
+import struct
 import subprocess
 import sys
 import tempfile
 import unittest
 
 CODE = Path(__file__).resolve().parents[1]
+
+
+class PluginContract(unittest.TestCase):
+    def test_root_plugin_layout_and_content_lock(self):
+        self.assertFalse((CODE / "plugins/opl-image").exists())
+        marketplace = json.loads((CODE / ".agents/plugins/marketplace.json").read_text())
+        self.assertEqual(marketplace["plugins"][0]["source"]["path"], ".")
+        mcp = json.loads((CODE / "mcp.json").read_text())
+        self.assertEqual(mcp["mcpServers"]["opl-image"]["args"], ["${PLUGIN_ROOT}/miniapp/dist/server.mjs"])
+        self.assertEqual(mcp["mcpServers"]["opl-image"]["cwd"], "${PLUGIN_ROOT}")
+        for required in ("plugin.json", "LOCAL_ACCESS.md", "skills/opl-image/SKILL.md", "opl-package.json"):
+            self.assertTrue((CODE / required).is_file(), f"missing {required}")
+        manifest = json.loads((CODE / "opl-package.json").read_text())
+        self.assertEqual(manifest["codex_surface"]["plugin_source_path"], ".")
+        self.assertTrue((CODE / manifest["presentation"]["icon_ref"]).is_file())
+        digest = hashlib.sha256()
+        for rel in manifest["content_lock"]["paths"]:
+            path = CODE / rel
+            self.assertTrue(path.is_file(), f"missing locked file: {rel}")
+            for value in (rel.encode("utf-8"), path.read_bytes()):
+                digest.update(struct.pack(">Q", len(value)))
+                digest.update(value)
+        self.assertEqual("sha256:" + digest.hexdigest(), manifest["content_lock"]["digest"])
 
 
 class PortableSetup(unittest.TestCase):
